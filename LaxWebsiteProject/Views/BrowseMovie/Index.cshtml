@@ -1,0 +1,23 @@
+﻿@model LaxWebsiteProject.Models.MovieListViewModel
+@{
+    ViewData["Title"] = "Browse Movies";
+}
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+    <p>Here you can browse our movie database, by title or genre. Enjoy!</p>
+</div>
+<div>
+    <div>
+        <form asp-controller="BrowseMovie" asp-action="Index" method="get">
+            <p>
+                <select asp-for="Categories" asp-items="Model.Categories">
+                    <option value="">All</option>
+                </select>
+
+                Title: <input type="text" asp-for="SearchString" />
+                <input type="submit" value="Filter" />
+            </p>
+        </form>
+    </div>
+</div>
