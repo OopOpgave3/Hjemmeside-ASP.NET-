@@ -9,15 +9,16 @@
 </head>
 <body>
     <header>
-        <div  width="auto" height="100%" style="border-width: 5px; border-style: solid; background-color:powderblue; margin:0px 5%">
+        <div width="auto" height="100%" style="border-width: 5px; border-style: solid; background-color:powderblue; margin:0px 5%">
             <h1 asp-area="" asp-controller="Home" asp-action="Index" style="text-align: center;  margin: 0px auto;">Welcome to LAX's Moviedatabase</h1>
         </div>
     </header>
+
     <div>
-        <nav >
+        <nav>
             <div class="text-center" style="height:100%; width:100%;">
                 <div style="float:left; box-sizing: border-box; height: 100%; width: 25%; padding: 2% 4%;margin: 15px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="text-align:center;">Browse Movies</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="BrowseMovies" asp-action="Index" style="text-align:center;">Browse Movies</a>
                 </div>
                 <div style="float:right; box-sizing: border-box; height: 100%; width: 25%; padding: 2% 4%;margin: 15px 5%; border-width: 5px; border-style: solid; background-color: lightyellow">
                     <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Index" style="text-align:center;">About</a>
@@ -28,6 +29,7 @@
             </div>
         </nav>
     </div>
+
     <div style="clear:both">
         <main role="main" class="pb-3">
             @RenderBody()
