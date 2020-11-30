@@ -6,21 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LaxWebsiteProject.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using LaxWebsiteProject.Data;
 
 namespace LaxWebsiteProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly LaxWebsiteProjectContext _context;
+
+        public HomeController(LaxWebsiteProjectContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var movies = from m in _context.Movie
+                         orderby m.MovieReleaseDate descending
+                         select m;
+
+            var movieGenreVM = new MovieListViewModel
+            {
+                Movies = await movies.ToListAsync()
+            };
+
+            return View(movieGenreVM);
         }
 
         public IActionResult Privacy()

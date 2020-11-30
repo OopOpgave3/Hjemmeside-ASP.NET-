@@ -7,7 +7,7 @@ namespace LaxWebsiteProject.Models
 {
     public class MovieCategory
     {
-        public int PK_MovieCategoryID { get; set; }
+        public int Id { get; set; }
 
         public int FK_MovieId { get; set; }
 
@@ -26,5 +26,7 @@ namespace LaxWebsiteProject.Models
         public int MovieCategoryRating_5 { get; set; }
 
         public int MovieCategoryRatCount { get; set; }
+
+        public List<Category> ListCategory { get; set; }
     }
 }

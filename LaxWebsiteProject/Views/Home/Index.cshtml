@@ -1,81 +1,89 @@
-﻿@{
+﻿@model LaxWebsiteProject.Models.MovieListViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div style="height:100%; width:100%;">
-    <div style="float:left; box-sizing: border-box; height: 70%; width: 40%; padding: 5px 0px;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
-        <p>Latest titles</p>
-    </div>
-    <div style="float:right; box-sizing: border-box; height: 70%; width: 40%; padding: 5px 0px;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
-        <p>Top categories</p>
-    </div>
-</div>
-<div style="height:100%; width:100%;">
-    
-    <div style="float:left; box-sizing: border-box; height: 430px; width: 40%;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
-        <!--
-        <div style="float:left; height: 40px; width: 100%; border-width: 0px 0px 5px 0px; border-style: solid;  background-color: palevioletred">
-            <p>Id   Titles  Release date</p>
+<div>
+    <div style="height:100%; width:100%;">
+        <div style="float:left; box-sizing: border-box; height: 70%; width: 40%; padding: 5px 0px;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+            <p>Latest titles</p>
         </div>
-    -->
-        <table class="table" >
-        <thead style="height:40px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
-            <tr>
-                <th>
-                    <p>Id</p>
-                </th>
-                <th>
-                    <p>Title</p>
-                </th>
-                <th>
-                    <p>Release date</p>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="border-bottom-width:2px; border-bottom-style:solid;">
-                <td >
-                    Hallo
-                </td>
-                <td>
-                    Du
-                </td>
-                <td>
-                    Gamle
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <div style="float:right; box-sizing: border-box; height: 70%; width: 40%; padding: 5px 0px;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+            <p>Top categories</p>
+        </div>
     </div>
-    <div style="float:right; box-sizing: border-box; height: 430px; width: 40%;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
-        
-        <table class="table">
-            <thead style="height:40px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
-                <tr>
-                    <th>
-                        <p>Category</p>
-                    </th>
-                    <th>
-                        <p>no. of ratings</p>
-                    </th>
-                    <th>
-                        <p>rating</p>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="border-bottom-width:2px; border-bottom-style:solid;">
-                    <td>
-                        Hallo
-                    </td>
-                    <td>
-                        Du
-                    </td>
-                    <td>
-                        Gamle
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <form asp-controller="BrowseMovie" asp-action="Index" method="get" style="margin: 0 auto">
+    </form>
+    <div style="height:100%; width:100%;">
+
+        <div style="float:left; box-sizing: border-box; height: 430px; width: 40%;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+            <!--
+                <div style="float:left; height: 40px; width: 100%; border-width: 0px 0px 5px 0px; border-style: solid;  background-color: palevioletred">
+                    <p>Id   Titles  Release date</p>
+                </div>
+            -->
+            <table class="table">
+                <thead style="height:40px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
+                    <tr>
+                        <th>
+                            <p>@Html.DisplayNameFor(model => model.Movies[0].MovieTitle)</p>
+                        </th>
+                        <th>
+                            <p>@Html.DisplayNameFor(model => model.Movies[0].MovieReleaseDate)</p>
+                        </th>
+                        <th>
+                            <p>@Html.DisplayNameFor(model => model.Movies[0].MovieCategories)</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Movies)
+                    {
+                        <tr style="border-bottom-width:2px; border-bottom-style:solid;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MovieTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MovieReleaseDate)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.MovieCategories[0].CategoryName)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div style="float:right; box-sizing: border-box; height: 430px; width: 40%;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+
+            <table class="table">
+                <thead style="height:40px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
+                    <tr>
+                        <th>
+                            <p>Category</p>
+                        </th>
+                        <th>
+                            <p>no. of ratings</p>
+                        </th>
+                        <th>
+                            <p>rating</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom-width:2px; border-bottom-style:solid;">
+                        <td>
+                            Not
+                        </td>
+                        <td>
+                            Functional
+                        </td>
+                        <td>
+                            Yet
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

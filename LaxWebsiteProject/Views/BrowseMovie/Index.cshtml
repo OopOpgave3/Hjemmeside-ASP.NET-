@@ -6,31 +6,36 @@
     <div class="text-center">
         <h1>Browse movies</h1>
         <p>Here you can browse our movie databse. Either by title or genre. Happy browsing!</p>
+
     </div>
-    
-    <form asp-controller="BrowseMovie" asp-action="Index" method="get">
-         <p>
-        <select asp-for="Movies" asp-items="Model.Categories">
-            <option value="">All</option>
-        </select>
+    <div style="margin: 0 20%; align-items:center">
+        <form asp-controller="BrowseMovie" asp-action="Index" method="get" style="margin: 0 auto">
+            <p>
+                <!--
+    <select asp-for="Movies" asp-items="Model.Categories">
+        <option value="">All</option>
+    </select>
+    -->
+                Title: <input type="text" asp-for="SearchString" />
+                <input type="submit" value="Filter" />
+            </p>
 
-        Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+        </form>
+    </div>
 
-    </form>
+
     <div style="width:60%; height:80%;margin: 10px auto; border:3px; border-style:solid;background-color:aliceblue">
         <table class="table" style="clear:both">
             <thead>
                 <tr>
                     <th>
-                        <p>Title</p>
+                        <p>@Html.DisplayNameFor(model => model.Movies[0].MovieTitle)</p>
                     </th>
                     <th>
-                        <p>Release date</p>
+                        <p>@Html.DisplayNameFor(model => model.Movies[0].MovieReleaseDate)</p>
                     </th>
                     <th>
-                        <p>Genre</p>
+                        <p>@Html.DisplayNameFor(model => model.Movies[0].MovieCategories)</p>
                     </th>
                     <th>
                         <p>Rating</p>
@@ -38,17 +43,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="border-bottom-width:2px; border-bottom-style:solid;">
-                    <td>
-                        Hallo
-                    </td>
-                    <td>
-                        Du
-                    </td>
-                    <td>
-                        Gamle
-                    </td>
-                </tr>
+                @foreach (var item in Model.Movies)
+                {
+                    //for (int i = 0; i < item.MovieCategories.Count-1; i++)
+                    //{
+                    //    item.CategoryString += item.MovieCategories[i].FK_Category;
+                    //    item.CategoryString += " ";
+                    //}
+            <tr style="border-bottom-width:2px; border-bottom-style:solid;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieReleaseDate)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.MovieCategories[0].CategoryName)
+                </td>
+            </tr>
+        }
             </tbody>
         </table>
     </div>

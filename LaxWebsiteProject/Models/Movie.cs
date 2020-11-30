@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace LaxWebsiteProject.Models
 {
     public class Movie
     {
-        public int PK_MovieId { get; set; }
+        public int Id { get; set; }
 
         public string MovieTitle { get; set; }
 
@@ -15,6 +16,8 @@ namespace LaxWebsiteProject.Models
 
         public string MovieDirector { get; set; }
 
-        public List<MovieCategory> MovieCategories { get; set; }
+        //public List<MovieCategory> MovieCategories { get; set; }
+
+        public List<Category> MovieCategories { get; set; }
     }
 }
