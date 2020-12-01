@@ -7,7 +7,7 @@ namespace LaxWebsiteProject.Models
 {
     public class Tag
     {
-        public int PK_TagID { get; set; }
+        public int Id { get; set; }
 
         public string TagWord { get; set; }
     }

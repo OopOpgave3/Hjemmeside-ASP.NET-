@@ -7,7 +7,7 @@ namespace LaxWebsiteProject.Models
 {
     public class MovieTag
     {
-        public int PK_MovieTagID { get; set; }
+        public int Id { get; set; }
 
         public int FK_MovieId { get; set; }
 

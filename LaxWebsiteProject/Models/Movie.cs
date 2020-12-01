@@ -16,8 +16,8 @@ namespace LaxWebsiteProject.Models
 
         public string MovieDirector { get; set; }
 
-        //public List<MovieCategory> MovieCategories { get; set; }
+        public List<MovieCategory> MovieCategories { get; set; }
 
-        public List<Category> MovieCategories { get; set; }
+        public List<Category> CategoriesList { get; set; }
     }
 }
