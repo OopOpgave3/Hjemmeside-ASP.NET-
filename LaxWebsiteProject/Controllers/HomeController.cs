@@ -29,10 +29,53 @@ namespace LaxWebsiteProject.Controllers
                          orderby m.MovieReleaseDate descending
                          select m;
 
-            var movieGenreVM = new MovieListViewModel
+            //--------------------------------------------------------------------------------------------------------------
+
+
+            ControllerBase BaseMethod = new ControllerBase();
+
+            var MovieVM = new List<Movie>();
+            MovieVM = await movies.ToListAsync();
+
+            var moviesCateg = from m in _context.MovieCategory
+                              select m;
+
+            var categ = from m in _context.Category
+                        select m;
+
+            var MovieCategoryVM = new List<MovieCategory>();
+            MovieCategoryVM = await moviesCateg.ToListAsync();
+
+            var CategoryVM = new List<Category>();
+            CategoryVM = await categ.ToListAsync();
+
+            List<MovieWCategories> movieWCategories = new List<MovieWCategories>();
+
+            movieWCategories = await BaseMethod.GetMovies(null,MovieVM, MovieCategoryVM, CategoryVM);
+
+            //--------------------------------------------------------------------------------------------------------------
+
+            List<CategoryCount> CategoryCounts = new List<CategoryCount>();
+            CategoryCounts = await BaseMethod.NumberOfCategories(MovieCategoryVM, CategoryVM);
+
+            List<CategoryCount> CountFinal = new List<CategoryCount>();
+
+            for (int i = 0; i < 6; i++)
             {
-                Movies = await movies.ToListAsync()
+                //if(is)
+                //{
+
+                //}
+            }
+
+            var movieGenreVM = new ShowMovieModel
+            {
+                Movies = movieWCategories,
+                Categories = CategoryCounts
+                //MovieCategories = await moviesCateg.ToListAsync(),
+                //Categories = await categ.ToListAsync()
             };
+            
 
             return View(movieGenreVM);
         }

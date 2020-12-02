@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LaxWebsiteProject.Models
 {
-    public class Movie
+    public class MovieWCategories
     {
         public int Id { get; set; }
 
@@ -15,6 +15,8 @@ namespace LaxWebsiteProject.Models
         public DateTime MovieReleaseDate { get; set; }
 
         public string MovieDirector { get; set; }
+
+        public string CategoriesString { get; set; }
 
         //public List<MovieCategory> MovieCategories { get; set; }
 

@@ -8,14 +8,14 @@ namespace LaxWebsiteProject.Models
 {
     public class ShowMovieModel
     {
+        public List<MovieWCategories> Movies { get; set; }
+        public List<MovieCategory> MovieCategories { get; set; }
+
+        public List<CategoryCount> Categories { get; set; }
 
         public SelectList SelectCategories { get; set; }
 
-        public List<Movie> Movies { get; set; }
-
-        public List<MovieCategory> MovieCategories { get; set; }
-
-        public List<Category> Categories { get; set; }
+        public string MovieGenre { get; set; }
 
         public String SearchString { get; set; }
     }

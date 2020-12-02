@@ -1,13 +1,13 @@
-﻿@model LaxWebsiteProject.Models.MovieListViewModel
+﻿@model LaxWebsiteProject.Models.ShowMovieModel
 @{
     ViewData["Title"] = "Home Page";
 }
 <div>
     <div style="height:100%; width:100%;">
-        <div style="float:left; box-sizing: border-box; height: 70%; width: 40%; padding: 5px 0px;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+        <div style="float:left; box-sizing: border-box; height: 40%; width: 40%; padding: 5px 0px;margin:5px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
             <p>Latest titles</p>
         </div>
-        <div style="float:right; box-sizing: border-box; height: 70%; width: 40%; padding: 5px 0px;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+        <div style="float:right; box-sizing: border-box; height: 40%; width: 40%; padding: 5px 0px;margin:5px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
             <p>Top categories</p>
         </div>
     </div>
@@ -15,14 +15,14 @@
     </form>
     <div style="height:100%; width:100%;">
 
-        <div style="float:left; box-sizing: border-box; height: 430px; width: 40%;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+        <div style="overflow:hidden;float:left; box-sizing: border-box; height: 380px; width: 40%;margin:5px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
             <!--
                 <div style="float:left; height: 40px; width: 100%; border-width: 0px 0px 5px 0px; border-style: solid;  background-color: palevioletred">
                     <p>Id   Titles  Release date</p>
                 </div>
             -->
             <table class="table">
-                <thead style="height:40px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
+                <thead style="height:30px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
                     <tr>
                         <th>
                             <p>@Html.DisplayNameFor(model => model.Movies[0].MovieTitle)</p>
@@ -31,7 +31,7 @@
                             <p>@Html.DisplayNameFor(model => model.Movies[0].MovieReleaseDate)</p>
                         </th>
                         <th>
-                            <p>@Html.DisplayNameFor(model => model.Movies[0].MovieCategories)</p>
+                            <p>Director</p>
                         </th>
                     </tr>
                 </thead>
@@ -46,44 +46,41 @@
                                 @Html.DisplayFor(modelItem => item.MovieReleaseDate)
                             </td>
                             <td>
-
-                                @Html.DisplayFor(modelItem => item.MovieCategories[0].CategoryStuff[0].CategoryName)
+                                @Html.DisplayFor(modelItem => item.CategoriesString)
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-        <div style="float:right; box-sizing: border-box; height: 430px; width: 40%;margin:20px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow">
+        <div style="float:right; box-sizing: border-box; height: 380px; width: 40%;margin:5px 5%; border-width: 5px; border-style: solid;  background-color: lightyellow; overflow:hidden;">
 
             <table class="table">
-                <thead style="height:40px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
+                <thead style="height:30px; border-width: 2px 0 5px 0; border-style:solid;background-color:palevioletred">
                     <tr>
                         <th>
                             <p>Category</p>
                         </th>
                         <th>
-                            <p>no. of ratings</p>
-                        </th>
-                        <th>
-                            <p>rating</p>
+                            <p>Count</p>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="border-bottom-width:2px; border-bottom-style:solid;">
-                        <td>
-                            Not
-                        </td>
-                        <td>
-                            Functional
-                        </td>
-                        <td>
-                            Yet
-                        </td>
-                    </tr>
+                    @foreach (var item in Model.Categories)
+                    { 
+                        <tr style="border-bottom-width:2px; border-bottom-style:solid;">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Count)
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
     </div>
+    <p style="clear:both; height:1px"></p>
 </div>
