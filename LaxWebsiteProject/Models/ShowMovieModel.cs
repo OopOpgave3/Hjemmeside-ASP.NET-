@@ -9,7 +9,7 @@ namespace LaxWebsiteProject.Models
     public class ShowMovieModel
     {
         public List<MovieWCategories> Movies { get; set; }
-        public List<MovieCategory> MovieCategories { get; set; }
+        public List<Movie_Category> MovieCategories { get; set; }
 
         public List<CategoryCount> Categories { get; set; }
 

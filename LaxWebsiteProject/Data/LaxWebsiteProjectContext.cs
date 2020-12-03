@@ -12,9 +12,11 @@ namespace LaxWebsiteProject.Data
 
         public DbSet<Movie> Movie { get; set; }
 
-        public DbSet<MovieCategory> MovieCategory { get; set; }
+        public DbSet<Movie_Category> MovieCategory { get; set; }
 
         public DbSet<Category> Category { get; set; }
+
+        public DbSet<Director> director { get; set; }
 
 
 

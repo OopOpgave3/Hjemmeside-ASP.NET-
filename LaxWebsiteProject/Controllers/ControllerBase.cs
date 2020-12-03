@@ -14,7 +14,7 @@ namespace LaxWebsiteProject.Controllers
 {
     public class ControllerBase : Controller
     {
-        public async Task<List<MovieWCategories>> GetMovies(string Genre, List<Movie> Movie, List<MovieCategory> MovieCategory, List<Category> Category) 
+        public async Task<List<MovieWCategories>> GetMovies(string Genre, List<Movie> Movie, List<Movie_Category> MovieCategory, List<Category> Category) 
         {
 
             List<MovieWCategories> movieWCategories = new List<MovieWCategories>();
@@ -24,7 +24,7 @@ namespace LaxWebsiteProject.Controllers
                 string TempCategoriesString = "";
                 foreach (var movieCategoryItem in MovieCategory)
                 {
-                    if (movieItem.Id == movieCategoryItem.FK_MovieId)
+                    if (movieItem.Id == movieCategoryItem.FK_MovieID)
                     {
                         foreach (var categoryItem in Category)
                         {
@@ -39,17 +39,17 @@ namespace LaxWebsiteProject.Controllers
                 MovieWCategories NewMovie = new MovieWCategories
                 {
                     Id = movieItem.Id,
-                    MovieTitle = movieItem.MovieTitle,
-                    MovieReleaseDate = movieItem.MovieReleaseDate,
-                    MovieDirector = movieItem.MovieDirector,
-                    CategoriesString = TempCategoriesString
+                    Title = movieItem.MovieTitle,
+                    Release_date = movieItem.MovieReleaseDate,
+                    Director = movieItem.MovieDirector,
+                    Categories_string = TempCategoriesString,
+                    
                 };
                 movieWCategories.Add(NewMovie);
             }
             if (!string.IsNullOrEmpty(Genre))
             {
                 movieWCategories = await SortCategories(Genre, movieWCategories);
-                //movieWCategories = await SortCategories(Genre, movieWCategories);
             }
 
             return movieWCategories;
@@ -59,7 +59,7 @@ namespace LaxWebsiteProject.Controllers
             List<MovieWCategories> ReturnList = new List<MovieWCategories>();
             foreach (var item in CategoriesList)
             {
-                if (item.CategoriesString.Contains(Genre))
+                if (item.Categories_string.Contains(Genre))
                 {
                     ReturnList.Add(item);
                 }
@@ -69,7 +69,7 @@ namespace LaxWebsiteProject.Controllers
 
 
 
-        public async Task<List<CategoryCount>> NumberOfCategories(List<MovieCategory> MovieCategoryVM, List<Category> CategoryVM) 
+        public async Task<List<CategoryCount>> NumberOfCategories(List<Movie_Category> MovieCategoryVM, List<Category> CategoryVM) 
         {
             List<CategoryCount> CategoryCountList = new List<CategoryCount>();
             foreach (var category in CategoryVM)

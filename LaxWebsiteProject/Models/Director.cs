@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace LaxWebsiteProject.Models
 {
-    public class Tag
+    public class Director
     {
         public int Id { get; set; }
 
-        public string TagWord { get; set; }
+        public string First_name { get; set; }
+
+        public string Middle_name { get; set; }
+
+        public string Last_name { get; set; }
     }
 }

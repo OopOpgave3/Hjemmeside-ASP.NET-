@@ -10,13 +10,13 @@ namespace LaxWebsiteProject.Models
     {
         public int Id { get; set; }
 
-        public string MovieTitle { get; set; }
+        public string Title { get; set; }
 
-        public DateTime MovieReleaseDate { get; set; }
+        public DateTime Release_date { get; set; }
 
-        public string MovieDirector { get; set; }
+        public string Categories_string { get; set; }
 
-        public string CategoriesString { get; set; }
+        public string Director { get; set; }
 
         //public List<MovieCategory> MovieCategories { get; set; }
 

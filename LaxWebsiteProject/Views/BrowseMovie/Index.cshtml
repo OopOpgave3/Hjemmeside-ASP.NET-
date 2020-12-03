@@ -25,14 +25,14 @@
 
 
     <div style="width:60%; height:40vh;margin: 10px auto; border:3px; border-style:solid;background-color:aliceblue; overflow-y:scroll;">
-        <table class="table" style="clear:both;">
+        <table class="table" style="clear:both;" >
             <thead>
-                <tr>
+                <tr style="border-bottom-width:2px; border-bottom-style:solid; border-bottom-color:black;">
                     <th>
-                        <p>@Html.DisplayNameFor(model => model.Movies[0].MovieTitle)</p>
+                        <p>@Html.DisplayNameFor(model => model.Movies[0].Title)</p>
                     </th>
                     <th>
-                        <p>@Html.DisplayNameFor(model => model.Movies[0].MovieReleaseDate)</p>
+                        <p>@Html.DisplayNameFor(model => model.Movies[0].Release_date)</p>
                     </th>
                     <th>
                         <p>Categories</p>
@@ -52,18 +52,18 @@
                     //}
                 <tr style="border-bottom-width:2px; border-bottom-style:solid;">
                     <td>
-                        @Html.DisplayFor(modelItem => item.MovieTitle)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.MovieReleaseDate)
-                    </td>
-                    <td>
-
-                        @Html.DisplayFor(modelItem => item.CategoriesString)
+                        @Html.DisplayFor(modelItem => item.Release_date)
                     </td>
                     <td>
 
-                        @Html.DisplayFor(modelItem => item.MovieDirector)
+                        @Html.DisplayFor(modelItem => item.Categories_string)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Director)
                     </td>
                 </tr>
         }

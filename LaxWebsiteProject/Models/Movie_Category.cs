@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LaxWebsiteProject.Models
 {
-    public class MovieCategory
+    public class Movie_Category
     {
         public int Id { get; set; }
 
-        public int FK_MovieId { get; set; }
+        public int FK_MovieID { get; set; }
 
         public int FK_CategoryID { get; set; }
 

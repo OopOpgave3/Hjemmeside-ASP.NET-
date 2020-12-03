@@ -43,7 +43,7 @@ namespace LaxWebsiteProject.Controllers
             var categ = from m in _context.Category
                         select m;
 
-            var MovieCategoryVM = new List<MovieCategory>();
+            var MovieCategoryVM = new List<Movie_Category>();
             MovieCategoryVM = await moviesCateg.ToListAsync();
 
             var CategoryVM = new List<Category>();
@@ -58,22 +58,10 @@ namespace LaxWebsiteProject.Controllers
             List<CategoryCount> CategoryCounts = new List<CategoryCount>();
             CategoryCounts = await BaseMethod.NumberOfCategories(MovieCategoryVM, CategoryVM);
 
-            List<CategoryCount> CountFinal = new List<CategoryCount>();
-
-            for (int i = 0; i < 6; i++)
-            {
-                //if(is)
-                //{
-
-                //}
-            }
-
             var movieGenreVM = new ShowMovieModel
             {
                 Movies = movieWCategories,
                 Categories = CategoryCounts
-                //MovieCategories = await moviesCateg.ToListAsync(),
-                //Categories = await categ.ToListAsync()
             };
             
 
