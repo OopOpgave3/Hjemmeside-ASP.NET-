@@ -12,14 +12,12 @@ namespace LaxWebsiteProject.Models
 
         public string Title { get; set; }
 
+        [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
         public DateTime Release_date { get; set; }
 
         public string Categories_string { get; set; }
 
         public string Director { get; set; }
-
-        //public List<MovieCategory> MovieCategories { get; set; }
-
-        //public List<Category> CategoriesList { get; set; }
     }
 }

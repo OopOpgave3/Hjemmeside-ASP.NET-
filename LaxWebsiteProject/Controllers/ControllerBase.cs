@@ -14,6 +14,12 @@ namespace LaxWebsiteProject.Controllers
 {
     public class ControllerBase : Controller
     {
+        private readonly LaxWebsiteProjectContext _context;
+
+        public ControllerBase(LaxWebsiteProjectContext context)
+        {
+            _context = context;
+        }
         public async Task<List<MovieWCategories>> GetMovies(string Genre, List<Movie> Movie, List<Movie_Category> MovieCategory, List<Category> Category) 
         {
 
@@ -98,6 +104,74 @@ namespace LaxWebsiteProject.Controllers
             }
 
             return FinalList;
+        }
+        public async Task<List<MovieWCategories>> JoinMovies(string Genre, string SearchString, bool MovieOrderBy)
+        {
+            var movies = from m in _context.Movie
+                         select m;
+
+            var moviesCateg = from m in _context.MovieCategory
+                              select m;
+
+            var categ = from m in _context.Category
+                        select m;
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                movies = movies.Where(s => s.MovieTitle.Contains(SearchString));
+
+            }
+            var MovieVM = new List<Movie>();
+            if (MovieOrderBy)
+            {
+                MovieVM = await GetNewestAdded();
+            }
+            else if (MovieOrderBy == false)
+            {
+                MovieVM = await GetNewestRelease();
+            }
+            else
+            {
+                MovieVM = await movies.ToListAsync();
+            }
+            
+            
+
+            var MovieCategoryVM = new List<Movie_Category>();
+            MovieCategoryVM = await moviesCateg.ToListAsync();
+
+            var CategoryVM = new List<Category>();
+            CategoryVM = await categ.ToListAsync();
+
+            List<MovieWCategories> movieWCategories = new List<MovieWCategories>();
+
+            movieWCategories = await GetMovies(Genre, MovieVM, MovieCategoryVM, CategoryVM);
+            return movieWCategories;
+
+        }
+        public async Task<List<Movie>> GetNewestAdded()
+        {
+            
+            var movies = from m in _context.Movie
+                         orderby m.Id descending
+                         select m;
+
+            List<Movie> MovieList = new List<Movie>();
+            MovieList = await movies.ToListAsync();
+            return MovieList;
+
+        }
+        public async Task<List<Movie>> GetNewestRelease()
+        {
+
+            var movies = from m in _context.Movie
+                         orderby m.MovieReleaseDate descending
+                         select m;
+
+            List<Movie> MovieList = new List<Movie>();
+            MovieList = await movies.ToListAsync();
+            return MovieList;
+
         }
     }
 }

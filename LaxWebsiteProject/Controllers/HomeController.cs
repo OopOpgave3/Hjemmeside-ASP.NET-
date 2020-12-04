@@ -32,7 +32,7 @@ namespace LaxWebsiteProject.Controllers
             //--------------------------------------------------------------------------------------------------------------
 
 
-            ControllerBase BaseMethod = new ControllerBase();
+            ControllerBase BaseMethod = new ControllerBase(_context);
 
             var MovieVM = new List<Movie>();
             MovieVM = await movies.ToListAsync();
@@ -50,8 +50,7 @@ namespace LaxWebsiteProject.Controllers
             CategoryVM = await categ.ToListAsync();
 
             List<MovieWCategories> movieWCategories = new List<MovieWCategories>();
-
-            movieWCategories = await BaseMethod.GetMovies(null,MovieVM, MovieCategoryVM, CategoryVM);
+            movieWCategories = await BaseMethod.JoinMovies(null, null, true);
 
             //--------------------------------------------------------------------------------------------------------------
 

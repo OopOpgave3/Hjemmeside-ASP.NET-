@@ -12,6 +12,8 @@ namespace LaxWebsiteProject.Models
 
         public string MovieTitle { get; set; }
 
+        [Display(Name = "Release Date")]
+        [DataType(DataType.Date)]
         public DateTime MovieReleaseDate { get; set; }
 
         public string MovieDirector { get; set; }

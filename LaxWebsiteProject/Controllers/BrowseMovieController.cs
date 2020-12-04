@@ -28,36 +28,11 @@ namespace LaxWebsiteProject.Controllers
             IQueryable<string> genreQuery = from m in _context.Category
                                             orderby m.CategoryName
                                             select m.CategoryName;
-
-            var movies = from m in _context.Movie
-                         select m;
-
-            var moviesCateg = from m in _context.MovieCategory
-                              select m;
-
-            var categ = from m in _context.Category
-                        select m;
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                movies = movies.Where(s => s.MovieTitle.Contains(searchString));
-
-            }
-
-            ControllerBase BaseMethod = new ControllerBase();
-
-            var MovieVM = new List<Movie>();
-            MovieVM = await movies.ToListAsync();
-
-            var MovieCategoryVM = new List<Movie_Category>();
-            MovieCategoryVM = await moviesCateg.ToListAsync();
-
-            var CategoryVM = new List<Category>();
-            CategoryVM = await categ.ToListAsync();
+            ControllerBase BaseMethod = new ControllerBase(_context);
 
             List<MovieWCategories> movieWCategories = new List<MovieWCategories>();
 
-            movieWCategories = await BaseMethod.GetMovies(MovieGenre, MovieVM, MovieCategoryVM, CategoryVM);
+            movieWCategories = await BaseMethod.JoinMovies(MovieGenre, searchString, false);
 
             var movieGenreVM = new ShowMovieModel
             {
