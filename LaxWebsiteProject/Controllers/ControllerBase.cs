@@ -116,26 +116,29 @@ namespace LaxWebsiteProject.Controllers
             var categ = from m in _context.Category
                         select m;
 
+            
+            
+            if (MovieOrderBy)
+            {
+                movies = await GetNewestAdded();
+                
+            }
+            else
+            {
+                movies = await GetNewestRelease();
+            }
+
+            
+
             if (!string.IsNullOrEmpty(SearchString))
             {
                 movies = movies.Where(s => s.MovieTitle.Contains(SearchString));
 
             }
             var MovieVM = new List<Movie>();
-            if (MovieOrderBy)
-            {
-                MovieVM = await GetNewestAdded();
-            }
-            else if (MovieOrderBy == false)
-            {
-                MovieVM = await GetNewestRelease();
-            }
-            else
-            {
-                MovieVM = await movies.ToListAsync();
-            }
-            
-            
+            MovieVM = await movies.ToListAsync();
+
+
 
             var MovieCategoryVM = new List<Movie_Category>();
             MovieCategoryVM = await moviesCateg.ToListAsync();
@@ -149,7 +152,7 @@ namespace LaxWebsiteProject.Controllers
             return movieWCategories;
 
         }
-        public async Task<List<Movie>> GetNewestAdded()
+        public async Task<IQueryable<Movie>> GetNewestAdded()
         {
             
             var movies = from m in _context.Movie
@@ -158,10 +161,10 @@ namespace LaxWebsiteProject.Controllers
 
             List<Movie> MovieList = new List<Movie>();
             MovieList = await movies.ToListAsync();
-            return MovieList;
+            return movies;
 
         }
-        public async Task<List<Movie>> GetNewestRelease()
+        public async Task<IQueryable<Movie>> GetNewestRelease()
         {
 
             var movies = from m in _context.Movie
@@ -170,7 +173,7 @@ namespace LaxWebsiteProject.Controllers
 
             List<Movie> MovieList = new List<Movie>();
             MovieList = await movies.ToListAsync();
-            return MovieList;
+            return movies;
 
         }
     }

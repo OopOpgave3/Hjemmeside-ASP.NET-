@@ -16,11 +16,6 @@ namespace LaxWebsiteProject.Data
 
         public DbSet<Category> Category { get; set; }
 
-        public DbSet<Director> director { get; set; }
-
-
-
-
-
+        public DbSet<Director> Director { get; set; }
     }
 }

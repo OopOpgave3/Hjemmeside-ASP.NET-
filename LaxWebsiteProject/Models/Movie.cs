@@ -17,9 +17,5 @@ namespace LaxWebsiteProject.Models
         public DateTime MovieReleaseDate { get; set; }
 
         public string MovieDirector { get; set; }
-
-        //public List<MovieCategory> MovieCategories { get; set; }
-
-        //public List<Category> CategoriesList { get; set; }
     }
 }
